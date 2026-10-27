@@ -1,0 +1,5 @@
+finance-ai-shorts/out/
+finance-ai-shorts/state/*.mp4
+finance-ai-shorts/finance-ai-shorts/
+__pycache__/
+*.pyc

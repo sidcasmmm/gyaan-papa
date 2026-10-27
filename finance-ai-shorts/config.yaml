@@ -1,0 +1,193 @@
+# ─────────────────────────────────────────────────────────────
+#  Finance AI Shorts — settings
+#  Edit this file to change how your channel looks and behaves.
+# ─────────────────────────────────────────────────────────────
+
+channel:
+  name: "Gyaan Papa"               # shown on every video — change to your channel name
+  handle: "@gyaanpapa"             # shown at the end of each video
+  tagline: "दुनिया समझो, आसान भाषा में"
+  character_name: "ज्ञान पापा"      # name sticker next to the character
+  language: "hi"                   # Hindi
+
+# Uploads are OFF. The pipeline still makes the video. Nothing is sent to YouTube,
+# Instagram, or Facebook until this is true AND the gyaan-papa repo has its own secrets.
+# Same secret names as the old channel. They must be new credentials, not Financial Papa's.
+uploads_enabled: false
+
+# "review": YouTube upload is PRIVATE, and Instagram is skipped while post_in_review_mode is false.
+# "auto":   publish publicly on both platforms with no human check.
+# Ignored while uploads_enabled is false.
+publish_mode: "review"
+
+# GitHub sometimes starts scheduled runs late. By default late runs STILL post.
+# To skip late runs instead, set skip_late_runs: true (they then only post inside the windows below).
+skip_late_runs: false
+min_hours_between_posts: 2.5       # a timer run skips if a Reel was posted less than this many hours ago
+max_posts_per_day: 5              # 4 timer Reels + room for 1 extra (test/manual) Reel a day; a day = 5 AM to 5 AM IST
+schedule_windows_ist: [["07:30", "09:30"], ["12:30", "14:00"], ["19:00", "21:00"], ["21:45", "23:00"]]
+
+platforms:
+  youtube: false               # turn on only after YT_CLIENT_ID / YT_CLIENT_SECRET / YT_REFRESH_TOKEN are the new channel's
+  instagram: false             # turn on only after IG_ACCESS_TOKEN / IG_USER_ID are from the new Facebook app + Instagram account
+
+# Label the videos as AI-generated (AI voice + AI-written script).
+# Recommended: keep true. Both platforms ask creators to disclose this.
+disclose_ai: true
+
+# ── Script writing (the AI that writes the Hindi script) ─────────────
+writer:
+  provider: "gemini"               # "gemini" (free tier) or "anthropic" (Claude)
+  anthropic_model: "claude-haiku-5-5"
+  gemini_model: "gemini-flash-latest"   # always the newest Gemini Flash
+  target_seconds: 20               # length of each Short (Hedra is billed per second). 20–25s Reels get watched to the end (and replayed) far more often than 30s+
+  tone: "You speak AS 'Gyaan Papa' — a warm, witty desi dad who explains how the world works to his Gen-Z kids. Call the viewer 'बेटा'. One video = one idea from space, everyday science, school-level biology, or history. Use one desi analogy per video (chai, cricket, monsoon, train, pressure cooker, Diwali lights). Sprinkle a little Gen-Z slang naturally (scene, vibe, literally, full on). Simple Hindi a 16-year-old understands. Wonder first, jargon never."
+
+# ── Scene background images (cinematic mode) ──────────────────────────
+images:
+  provider: "gemini"               # "gemini" = AI pictures that match each line (~$0.034 each, needs billing on your Gemini key)
+                                   # "pixabay" = free stock photos (also used automatically if AI images fail)
+  gemini_model: "gemini-3.1-flash-lite-image"   # cheapest Gemini image model; falls back to others automatically
+  monthly_limit_inr: 3000          # stop AI pictures for the rest of the month after ~₹3,000 (then free stock photos)
+  price_inr_per_image: 3.0         # approx. cost per AI picture, used for the limit above
+
+# ── Voice ───────────────────────────────────────────────────────────
+voice:
+  provider: "elevenlabs"           # "elevenlabs" = expressive (~$6/month Starter) | "edge" = free Microsoft voice
+  elevenlabs_voice_id: "7b9mYhmnp0y2qSH1FnBL"   # Papa's voice — the ElevenLabs voice you picked
+  elevenlabs_model: "eleven_turbo_v2_5"
+  # Fine-tune Papa's delivery here after hearing the first video:
+  elevenlabs_speed: 1.08           # 0.7 (slow) … 1.2 (fast)
+  elevenlabs_stability: 0.40       # lower = more expressive / emotional, higher = steadier
+  elevenlabs_style: 0.40           # higher = more dramatic delivery
+  name: "hi-IN-MadhurNeural"       # Indian male Hindi voice. Indian-English option: "en-IN-PrabhatNeural"
+  read: "devanagari"               # keep "devanagari": Hindi script makes ElevenLabs speak with a natural Indian accent
+  rate: "+18%"                     # fast, punchy — like popular finance reels
+  pitch: "+4Hz"                    # slightly lively, not deep
+
+# ── Papa's animation ────────────────────────────────────────────────
+animation:
+  provider: "hedra"                # "hedra" = AI-animated talking Papa (paid per second) | "free" = lip-sync in code
+  hedra_model: "hedra-character-3"
+  resolution: "540p"               # Papa fills only part of the screen, so 540p looks fine and costs less
+  max_cost_usd_per_video: 1.5      # safety limit: above this, the run uses the free animation instead
+
+# ── Sound ───────────────────────────────────────────────────────────
+sound_effects: true                # whoosh on scene change, ding on numbers, cha-ching on money lines
+sound_effects_volume: 0.5
+
+# ── "Papa Explains" — one idea per Reel ──────────────────────────────
+# slot: "always" = every run uses the list below (this channel's normal mode)
+#       "mix"    = sometimes a news headline, sometimes a list topic
+#       "none"   = news only
+# Topics are used top to bottom, then the list repeats. Add or edit freely.
+# Put a checked fact in the topic line when the number matters. The writer is told
+# not to invent dates, quotes, or measurements.
+# Trending mode asks Gemini what is popular this week. It is off because science and
+# history reels go wrong when the model guesses. Turn it on only if you want that risk.
+trending:
+  enabled: false
+  candidates: 5                    # how many trending ideas to look at each run
+  max_age_days: 14                 # ignore topics whose newest source is older than this
+
+explainers:
+  enabled: true
+  slot: "always"
+  explainer_share: 0.6             # only used when slot is "mix"
+  topics:
+    # space
+    - "Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana."
+    - "Aasman neela kyun dikhta hai — hawa chhoti neeli light ko zyada idhar-udhar bikher deti hai. Suraj dhalte waqt laal kyun dikhta hai, woh bhi."
+    - "Chand ki artain (phases) kyun badalti hain — Chand khud nahi chamakta, Suraj ki roshni ka hissa dikhta hai. Grahan alag cheez hai."
+    - "Mausam kyun badalte hain — Earth ka jhukaav (tilt), Suraj se doori nahi. India mein garmi aur sardi ka simple reason."
+    - "Light-year kya hota hai — time nahi, doori. Roshni ek saal mein jitna safar karti hai. Starlight hum tak der se kyun pahunchti hai."
+    - "Ek saal lagbhag 365 din kyun hota hai — Earth ka Suraj ke chaaron taraf ek chakkkar. Din aur raat alag cheez hai: Earth ka ghoomna."
+    - "Awaaz space mein kyun nahi sunai deti — awaaz ko hawa jaise kisi medium ki zaroorat hoti hai. Space lagbhag khaali hai."
+    - "Chandrayaan-3 ki kahani — Moon ke south pole ke paas soft landing. Sirf yeh kahani: wahan utarna mushkil kyun tha. Naya science claim mat banana."
+    # everyday science
+    - "Bijli (lightning) kaise banti hai — badal ke andar charge alag hote hain, phir ek badi chingari. Thunder usi hawa ka phatna hai."
+    - "Indradhanush kaise banta hai — safed roshni pani ki boondon se toot kar rangon mein bikhar jaati hai. Saat rang ek fixed list ki tarah mat ginao agar sure nahi."
+    - "Cheezein neeche kyun girti hain — gravity. Earth har cheez ko apni taraf kheenchti hai. Chand pe wahi cheez halki kyun mehsoos hoti hai."
+    - "Atom kya hota hai — har cheez ke chhote hisse. Beech mein nucleus, uske chaaron taraf electrons. Bomb ya reactor banana mat sikhao."
+    - "Magnet loha kyun kheenchta hai — magnet ke do pole, same pole durr, opposite pole paas. Compass north kyun dikhata hai, ek line mein."
+    - "Pressure cooker tez kyun pakata hai — band bartan mein pani zyada garam ho sakta hai. Valve ka kaam safety hai, experiment mat sikhao."
+    # biology — school level only, never medical advice or lab steps
+    - "DNA kya hai — cells ki recipe book jo batati hai body kaise bane. Lab mein kaise banaye, yeh mat sikhao."
+    - "Bacteria aur virus mein farq — bacteria ek chhoti living cell ho sakti hai, virus akele nahi jeeta, cell ke andar copy hota hai. Kaise grow karein, yeh bilkul mat sikhao."
+    - "Pedh apna khana kaise banate hain — photosynthesis: patte, suraj ki roshni, paani aur hawa ka carbon dioxide. Oxygen uska extra hissa hai."
+    - "Dil khoon ko kaise pump karta hai — ek pump jo body mein khoon ghumata rehta hai. Koi bimari, dawai ya ilaaj mat batana."
+    - "Vaccine ka idea kya hai — body ko ek pehchaan pehle se sikha dena, taaki baad mein asli infection pe taiyaar ho. Dose, ilaaj ya 'lo ya mat lo' mat kehna."
+    - "Neend body ke liye kyun zaroori hai — brain aur body ko thehrne ka time. Kitni neend 'sahi' hai, uska medical rule mat banana."
+    - "Evolution ka simple matlab — ek hi purane purvaj se alag species dheere-dheere kaise banti hain. 'Bandar se seedha insaan' wali line galat hai. Koi lab experiment mat sikhao."
+    # history — no invented quotes
+    - "Indus Valley ke shehar kya khaas the — soochi-band sadkein, naliyan, aur ek badi planning. Harappan likhai abhi poori padhi nahi gayi, yeh saaf kehna."
+    - "Ashoka aur Kalinga — yuddh ke baad usne hinsa se munh modne ki kahani. Yeh traditional account hai; historians detail par alag sochte hain. Fake quote mat banana."
+    - "Zero ko number ki tarah likhne ka idea India se aage kaise gaya — Brahmagupta ne rules likhe, phir yeh idea aage badha. 'India ne sab invent kiya' mat kehna."
+    - "1857 ko log kyun yaad rakhte hain — Company raj ke khilaaf bada vidroh. Ek wajah mat chuno; kai wajahen thin. Fake dialogue mat likhna."
+    - "Silk Route kya thi — ek sadak nahi, kai raaste jahan se resham, masale aur ideas chalte the. India us network ka hissa tha."
+    - "Printing press ne kitaabein kaise badli — pehle haath se ek copy, baad mein kai copies. Padhai sirf kuch logon tak seemit nahi rahi. Gutenberg ka naam tabhi lo jab sure ho."
+    - "Pyramids kaise bane — Misr ke logon ne patthar, ramp aur bahut saari mehnat se. Aliens ya hidden machines wali kahani mat sunao."
+    - "LIST: 4 sawal jo log space ke baare mein poochte hain (neela aasman, chand ki artain, black hole, awaaz space mein kyun nahi) — har item ek scene, ek sach"
+
+# ── Optional news path (only if a run is started with content_type: news) ─
+# Normal runs ignore this and use the topic list above.
+news:
+  max_age_hours: 48
+  feeds:
+    - https://www.nasa.gov/feed/
+    - https://www.space.com/feeds/all
+    - https://www.sciencedaily.com/rss/top/science.xml
+    - https://feeds.bbci.co.uk/news/science_and_environment/rss.xml
+    - https://www.thehindu.com/sci-tech/science/feeder/default.rss
+  # Stories containing these words are skipped
+  blocklist: ["horoscope", "lottery", "astrology", "obituary", "miracle cure", "weight loss", "supplement"]
+
+# Cartoon mode used to draw a market ticker. This channel does not. Leave empty.
+market:
+  tickers: {}
+
+# ── Look ───────────────────────────────────────────────────────────
+style:
+  # "cinematic": AI scene backgrounds + 3D Papa in the corner + Hinglish captions
+  # "cartoon":   2D Papa on a dark studio background with ticker and charts (100% free)
+  mode: "cinematic"
+  width: 1080
+  height: 1920
+  fps: 30
+  bg_top: "#0B1020"
+  bg_bottom: "#111A33"
+  accent: "#FFC233"                # gold
+  up: "#22C55E"
+  down: "#EF4444"
+  text: "#F5F7FF"
+  muted: "#8C96B8"
+  background_music_volume: 0       # 0 = no music. e.g. 0.12 uses assets/music/papa_bed_original.mp3 (original, made for this project)
+
+youtube:
+  category_id: "25"                # 25 = News & Politics. 27 = Education
+  default_tags: ["science hindi", "space facts hindi", "history hindi", "biology explained", "gyaan papa", "shorts"]
+  made_for_kids: false
+
+instagram:
+  graph_version: "v21.0"
+  post_in_review_mode: false       # keep false until this channel has its OWN Instagram account
+  share_to_feed: true
+  cover_offset_ms: 700             # Reel cover = this moment of the video (big hook title + Papa on screen)
+  also_post_trial_reel: false      # off until the account has enough followers for Trial Reels. true = also post the SAME video as a Trial Reel (shown to non-followers first)
+  trial_reel_graduation: MANUAL    # MANUAL = you choose in the app whether to share it to followers;
+                                   # SS_PERFORMANCE = Instagram does it automatically if it does well
+
+# Moving AI video backgrounds (Google Veo on Vertex AI, paid from the Google Cloud credit).
+# The opening scene + the longest scene get a few seconds of motion; the rest stay pictures.
+veo:
+  enabled: true                    # true = every Reel; false = only sample runs (save_sample) until approved
+  clips_per_reel: 3               # normal Reels: opening scene + the 2 longest scenes move
+  seconds: 4                       # per clip (it loops smoothly if the scene is longer)
+  price_inr_per_second: 10         # approx. Veo price, used for the limits below
+  monthly_limit_inr: 7500          # after this, still pictures for the rest of the month
+  monthly_limit_overrides: {}      # e.g. {"2026-11": 11000} for a month that needs a bigger budget
+  total_limit_inr: 25500           # hard stop for the whole Google Cloud credit (≈ ₹26k) — no Veo after this
+  # "Fully 3D" Reels: EVERY scene gets a moving Veo background (≈ ₹240 per Reel instead of ≈ ₹120).
+  full_3d_windows_ist: [["21:30", "23:59"]]   # the 10:17 PM night Reel
+  full_3d_until: ""                # empty = fully-3D off (both daily Reels use clips_per_reel). e.g. "2026-11-30" to turn on
+  until: "2027-01-20"              # Google Cloud free credit ends Jan 22, 2027 → Veo off after this

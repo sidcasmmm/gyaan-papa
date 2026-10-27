@@ -1,0 +1,43 @@
+name: Voice test (free, no keys needed)
+
+# Makes the sample video so you can hear Papa. Uses your ElevenLabs voice if the
+# ELEVENLABS_API_KEY secret is set, otherwise free Microsoft Indian voices.
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: finance-ai-shorts
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        include:
+          - label: papa-main-voice       # your config.yaml voice (ElevenLabs if key added)
+            args: ""
+          - label: free-hindi-madhur     # free Microsoft Hindi male
+            args: "--voice-name hi-IN-MadhurNeural --read devanagari"
+          - label: free-hinglish-prabhat # free Microsoft Indian-English male
+            args: "--voice-name en-IN-PrabhatNeural --read roman"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: finance-ai-shorts/requirements.txt
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg libraqm0
+      - run: pip install -r requirements.txt
+      - name: Make sample video
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python main.py --sample ${{ matrix.args }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sample-${{ matrix.label }}
+          path: finance-ai-shorts/out/**/*.mp4
+          retention-days: 7

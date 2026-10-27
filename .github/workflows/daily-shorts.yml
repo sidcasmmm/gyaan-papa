@@ -1,0 +1,143 @@
+name: Daily Gyaan Papa Shorts
+
+on:
+  # Timing is done by 4 Claude scheduled tasks (7:47 AM, 12:47 PM, 7:17 PM, 10:17 PM IST).
+  # GitHub's own timer was removed: it often ran hours late and could post extra Reels.
+  workflow_dispatch:          # lets you press "Run workflow" by hand (e.g. breaking news)
+    inputs:
+      dry_run:
+        description: "Make the video but don't upload"
+        type: boolean
+        default: true
+      auto_timer:
+        description: "Started by the daily timer (skips if a Reel was posted recently)"
+        type: boolean
+        default: false
+      content_type:
+        description: "auto = next topic from the list | trending | news | explainer"
+        type: choice
+        options: [auto, trending, news, explainer]
+        default: auto
+      avoid_topic:
+        description: "Optional: a topic to skip this time (e.g. black hole)"
+        type: string
+        default: ""
+      save_sample:
+        description: "Also save the video as state/sample.mp4 (for review)"
+        type: boolean
+        default: false
+      custom_topic:
+        description: "Optional: make this exact explainer (add the key facts in the text)"
+        type: string
+        default: ""
+      full_3d:
+        description: "Veo on every scene: auto = night Reel until 30 Nov, true/false = force"
+        type: choice
+        options: [auto, "true", "false"]
+        default: auto
+
+permissions:
+  contents: write             # to save posting history (avoids repeat stories)
+
+concurrency:
+  group: shorts
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: finance-ai-shorts   # the project lives in this folder
+
+jobs:
+  make-and-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: finance-ai-shorts/requirements.txt
+
+      # ffmpeg from GitHub (fast, cached) instead of the sometimes-broken Ubuntu mirror
+      - name: Install ffmpeg
+        uses: AnimMouse/setup-ffmpeg@v1
+
+      - name: Install Hindi text shaping (libraqm)
+        timeout-minutes: 8
+        run: |
+          ffmpeg -version | head -1
+          if ldconfig -p | grep -q libraqm; then echo "libraqm already installed"; exit 0; fi
+          for i in 1 2 3; do
+            sudo timeout 90 apt-get install -y -qq --no-install-recommends libraqm0 && break
+            sudo timeout 90 apt-get update -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=15 || true
+            echo "apt attempt $i failed — retrying"; sleep 5
+          done
+          ldconfig -p | grep libraqm || echo "warning: libraqm missing"
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Make and upload the Short
+        env:
+          PYTHONWARNINGS: ignore
+          AVOID_TOPIC: ${{ inputs.avoid_topic }}
+          CUSTOM_TOPIC: ${{ inputs.custom_topic }}
+          CONTENT_TYPE: ${{ inputs.content_type }}
+          AUTO_TIMER: ${{ inputs.auto_timer }}
+          SAVE_SAMPLE: ${{ inputs.save_sample }}
+          FULL_3D: ${{ inputs.full_3d }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VERTEX_API_KEY: ${{ secrets.VERTEX_API_KEY }}
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          HEDRA_API_KEY: ${{ secrets.HEDRA_API_KEY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set -o pipefail
+          # uploads_enabled: false in config.yaml means never post, even if this box is unchecked
+          if grep -q '^uploads_enabled: false' config.yaml || [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+            echo "No upload: video only. YouTube, Instagram, and Facebook are not called."
+          else
+            ARGS=""
+          fi
+          # keep a copy of the log in the repo (state/last_run.log) so problems are easy to read
+          status=0
+          python -u main.py $ARGS 2>&1 | tee /tmp/run.log || status=$?
+          mkdir -p state && tail -n 150 /tmp/run.log > state/last_run.log
+          if [ "${{ inputs.save_sample }}" = "true" ]; then
+            f=$(ls -t out/*/short_*.mp4 2>/dev/null | grep -v _ig | head -1); [ -n "$f" ] && cp "$f" state/sample.mp4
+          fi
+          exit $status
+
+      - name: Keep the video for 7 days (download from this run's page)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-${{ github.run_number }}
+          path: finance-ai-shorts/out/**/*.mp4
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Save posting history
+        if: always()
+        run: |
+          git config user.name "shorts-bot"
+          git config user.email "shorts-bot@users.noreply.github.com"
+          git add state/
+          if ! git diff --cached --quiet; then
+            git commit -m "Update posting history"
+            git pull --rebase --autostash || true   # in case you edited files while it ran
+            git push
+          fi

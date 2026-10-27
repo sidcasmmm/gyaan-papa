@@ -1,0 +1,8 @@
+requests>=2.31
+Pillow>=10.3
+PyYAML>=6.0
+edge-tts>=7.0
+yfinance>=0.2.50
+google-api-python-client>=2.130
+google-auth>=2.29
+numpy>=1.26

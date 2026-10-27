@@ -1,0 +1,34 @@
+name: Create Papa mouths + poses (run once)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: finance-ai-shorts
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests Pillow numpy PyYAML
+      - name: Generate mouth shapes and poses with Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python -u tools/make_papa_v2.py 2>&1 | tee /tmp/papa.log
+      - name: Save into the repo
+        if: always()
+        run: |
+          mkdir -p state && tail -n 80 /tmp/papa.log > state/papa_v2.log || true
+          git config user.name "shorts-bot"
+          git config user.email "shorts-bot@users.noreply.github.com"
+          git add assets/papa/v2 state/papa_v2.log || true
+          git diff --cached --quiet || (git commit -m "Create Papa mouth shapes and poses" && git pull --rebase --autostash && git push)

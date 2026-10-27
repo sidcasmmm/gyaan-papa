@@ -1,0 +1,24 @@
+pose: explain
+pose: thumbs
+pose: think
+  default/aa
+  default/ee
+  default/oo
+  default/mbp
+  default/blink
+  explain/aa
+  explain/ee
+  explain/oo
+  explain/mbp
+  explain/blink
+  thumbs/aa
+  thumbs/ee
+  thumbs/oo
+  thumbs/mbp
+  thumbs/blink
+  think/aa
+  think/ee
+  think/oo
+  think/mbp
+  think/blink
+✅ saved to /home/runner/work/financial-papa/financial-papa/finance-ai-shorts/assets/papa/v2

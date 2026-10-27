@@ -1,0 +1,80 @@
+name: Daily finance Shorts
+
+on:
+  schedule:
+    # GitHub uses UTC. This is 6:47 PM India time, once a day.
+    - cron: "17 13 * * *"
+  workflow_dispatch:          # lets you press "Run workflow" by hand
+    inputs:
+      dry_run:
+        description: "Make the video but don't upload"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write             # to save posting history (avoids repeat stories)
+
+concurrency:
+  group: shorts
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: finance-ai-shorts   # the project lives in this folder
+
+jobs:
+  make-and-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: finance-ai-shorts/requirements.txt
+
+      - name: Install ffmpeg + Hindi text shaping
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg libraqm0
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Make and upload the Short
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          HEDRA_API_KEY: ${{ secrets.HEDRA_API_KEY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python main.py --dry-run
+          else
+            python main.py
+          fi
+
+      - name: Keep the video for 7 days (download from this run's page)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-${{ github.run_number }}
+          path: finance-ai-shorts/out/**/*.mp4
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Save posting history
+        if: always()
+        run: |
+          git config user.name "shorts-bot"
+          git config user.email "shorts-bot@users.noreply.github.com"
+          git add state/history.json
+          git diff --cached --quiet || (git commit -m "Update posting history" && git push)
