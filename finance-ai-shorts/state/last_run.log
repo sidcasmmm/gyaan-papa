@@ -1,65 +1,22 @@
-① Finding trending finance topics
-  (gemini-flash-latest → gemini-3.8-flash via Vertex AI)
-  trending: UPI ka naya MDR rule — Kya dukandaar aapse extra paise maang sakta hai? [2026-10-15] — Social media creators are clarifying rumors after new merchant transaction rules took effect in mid-October 2026.
-  trending: LTCG Tax me badlaav? Government equity tax restructure karne par kar rahi hai vichar [2026-10-27] — Young retail investors on Instagram are debating reports that the Finance Ministry is reviewing long-term capital gains tax rates ahead of Budget 2027.
-  trending: Bank FD par 8.25% interest — Equity girne par kya Fixed Deposit lock karein? [2026-10-21] — Finance influencers are comparing high fixed deposit yields with volatile equity markets as retail investors seek guaranteed returns.
-  trending: Post Office Time Deposit freeze at 7.5% — Safe paisa ya inflation ka loss? [2026-10-16] — Young earners are discussing safe-haven government savings schemes after Q3 FY27 interest rates were kept unchanged.
-  trending: Gold ETF SIP vs Physical Gold — Festive shopping me smart choice kaun si hai? [2026-10-26] — With festive gold buying peaking, Indian creators are breaking down hidden jewelry making charges versus paper gold SIPs.
-① Papa Explains: UPI ka naya MDR rule — Kya dukandaar aapse extra paise maang sakta hai? (trending: Social media creators are clarifying rumors after new merchant transaction rules took effect in mid-October 2026.). Key facts: From 15 October 2026, a 0.4% Merchant Discount Rate (MDR) applies to merchant UPI transactions exceeding ₹2,000, capped at ₹300 per transaction.; Consumers pay zero fee on everyday UPI transactions and P2P transfers; merchants are legally prohibited from passing the MDR charge onto buyers.
+① Papa Explains: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
 ③ Writing script
-  hook style: Start with the price/cost change and what it means for the v
-  reel goal: comments
-  Story: UPI ka naya MDR rule — Kya dukandaar aapse extra paise maang sakta hai? (trending: Social media creators are clarifying rumors after new merchant transaction rules took effect in mid-October 2026.). Key facts: From 15 October 2026, a 0.4% Merchant Discount Rate (MDR) applies to merchant UPI transactions exceeding ₹2,000, capped at ₹300 per transaction.; Consumers pay zero fee on everyday UPI transactions and P2P transfers; merchants are legally prohibited from passing the MDR charge onto buyers.
-④ Voiceover
-  21.9s total
-⑤ Rendering video
-  generating scene images
-  (gemini-3.1-flash-lite-image via Vertex AI)
-  ✓ AI image 1/5
-  ✓ AI image 2/5
-  ✓ AI image 3/5
-  ✓ AI image 4/5
-  ✓ AI image 5/5
-  AI pictures this month: 164 (≈ ₹492 of ₹3000 limit)
-  Veo: 3 moving scene(s) planned
-  ✓ Veo video for scene 1
-  ✓ Veo video for scene 5
-  ✓ Veo video for scene 3
-  Veo this month: ≈ ₹1320 of ₹7500 · total ≈ ₹1320 of ₹25500
-[vost#0:0/rawvideo @ 0x5627c1a25500] Error submitting a packet to the muxer: Broken pipe
-    Last message repeated 1 times
-[out#0/rawvideo @ 0x5627c198a9c0] Error muxing a packet
-[out#0/rawvideo @ 0x5627c198a9c0] Task finished with error code: -32 (Broken pipe)
-[out#0/rawvideo @ 0x5627c198a9c0] Terminating thread with return code -32 (Broken pipe)
-[out#0/rawvideo @ 0x5627c198a9c0] Error writing trailer: Broken pipe
-[out#0/rawvideo @ 0x5627c198a9c0] Error closing file: Broken pipe
-[vost#0:0/rawvideo @ 0x55c6a2e9c340] Error submitting a packet to the muxer: Broken pipe
-    Last message repeated 1 times
-[out#0/rawvideo @ 0x55c6a2e0b600] Error muxing a packet
-[out#0/rawvideo @ 0x55c6a2e0b600] Task finished with error code: -32 (Broken pipe)
-[out#0/rawvideo @ 0x55c6a2e0b600] Terminating thread with return code -32 (Broken pipe)
-[out#0/rawvideo @ 0x55c6a2e0b600] Error writing trailer: Broken pipe
-[out#0/rawvideo @ 0x55c6a2e0b600] Error closing file: Broken pipe
-[vost#0:0/rawvideo @ 0x564c8148f580] Error submitting a packet to the muxer: Broken pipe
-    Last message repeated 1 times
-[out#0/rawvideo @ 0x564c81494640] Error muxing a packet
-[out#0/rawvideo @ 0x564c81494640] Task finished with error code: -32 (Broken pipe)
-[out#0/rawvideo @ 0x564c81494640] Terminating thread with return code -32 (Broken pipe)
-  ✓ out/20261027_2218/short_20261027_2218.mp4 (11.6 MB)
-⑥ Uploading (PUBLIC)
-  ✓ YouTube: https://youtube.com/shorts/7wNJMuibWl0
-  Instagram copy: 16.7 MB
-  ✓ Instagram: https://www.instagram.com/reel/DfAVhIyE93Q/
-### UPI New MDR Rule: Extra Charge Lagega Kya? #Shorts
-- Story: UPI ka naya MDR rule — Kya dukandaar aapse extra paise maang sakta hai? (trending: Social media creators are clarifying rumors after new merchant transaction rules took effect in mid-October 2026.). Key facts: From 15 October 2026, a 0.4% Merchant Discount Rate (MDR) applies to merchant UPI transactions exceeding ₹2,000, capped at ₹300 per transaction.; Consumers pay zero fee on everyday UPI transactions and P2P transfers; merchants are legally prohibited from passing the MDR charge onto buyers. (Financial Papa)
-- Length: 22s
-- Mode: auto
-- youtube: https://youtube.com/shorts/7wNJMuibWl0
-- instagram: https://www.instagram.com/reel/DfAVhIyE93Q/
-
-**This video used:**
-- Gemini script: 4,569 tokens in / 7,508 out
-- AI pictures: 5 (≈ ₹15)
-- Veo video: 12 s (≈ ₹120); this month 132 s ≈ ₹1320
-- ElevenLabs voice: 342 characters
-**This month so far (27 videos):** 164 AI pictures ≈ ₹492 · ElevenLabs 9,526 / 30,000 characters · Gemini script 248,740 tokens
+  hook style: Start with a question the viewer has actually asked, contain
+  reel goal: shares
+Traceback (most recent call last):
+  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/main.py", line 410, in <module>
+    main()
+  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/main.py", line 232, in main
+    script = writer.write_script(cfg, stories, "", set(),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/writer.py", line 280, in write_script
+    raw = _call_gemini(system, user, w["gemini_model"])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/writer.py", line 130, in _call_gemini
+    return _call_gemini_once(system, user, m)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/writer.py", line 157, in _call_gemini_once
+    r = gemini_api.post(
+        ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/gemini_api.py", line 84, in post
+    raise RuntimeError("No Gemini key set (VERTEX_API_KEY or GEMINI_API_KEY)")
+RuntimeError: No Gemini key set (VERTEX_API_KEY or GEMINI_API_KEY)
