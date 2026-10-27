@@ -1,22 +1,32 @@
 ① Papa Explains: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
 ③ Writing script
-  hook style: Start with a question the viewer has actually asked, contain
-  reel goal: shares
-Traceback (most recent call last):
-  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/main.py", line 410, in <module>
-    main()
-  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/main.py", line 232, in main
-    script = writer.write_script(cfg, stories, "", set(),
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/writer.py", line 280, in write_script
-    raw = _call_gemini(system, user, w["gemini_model"])
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/writer.py", line 130, in _call_gemini
-    return _call_gemini_once(system, user, m)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/writer.py", line 157, in _call_gemini_once
-    r = gemini_api.post(
-        ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/gyaan-papa/gyaan-papa/finance-ai-shorts/pipeline/gemini_api.py", line 84, in post
-    raise RuntimeError("No Gemini key set (VERTEX_API_KEY or GEMINI_API_KEY)")
-RuntimeError: No Gemini key set (VERTEX_API_KEY or GEMINI_API_KEY)
+  hook style: Start with the surprising fact itself, said like a discovery
+  reel goal: comments
+  (gemini-flash-latest via AI Studio)
+  Story: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
+④ Voiceover
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"9bbce35c3ff40ae8097744785d53ecf3"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"f0ff9fbe03789536d3f992209419d43a"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"76a977a242e6ea5749d47d72535482f9"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"5b0affd73922c2639bc70d8922f91621"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"3633070d723402ce1d1b34a1e917bd0c"}}); using free voice
+  27.8s total
+⑤ Rendering video
+  generating scene images
+  ✗ AI image 1: Gemini images unavailable: Gemini image failed: 429: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and — using stock photos instead
+  ✓ out/20261028_0351/short_20261028_0351.mp4 (7.3 MB)
+⑥ Uploads are off (uploads_enabled: false). Nothing sent to YouTube, Instagram, or Facebook.
+⑥ Dry run — skipping uploads
+### Black Hole Kya Hai? Light Bhi Kyun Phans Jaati Hai? #Shorts
+- Story: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana. (Gyaan Papa)
+- Length: 28s
+- Mode: review
+
+**This video used:**
+- Gemini script: 3,064 tokens in / 3,094 out
+- AI pictures: 0 (≈ ₹0)
+- ElevenLabs voice: 0 characters
+**This month so far (1 videos):** 0 AI pictures ≈ ₹0 · ElevenLabs 0 / 30,000 characters · Gemini script 6,158 tokens
