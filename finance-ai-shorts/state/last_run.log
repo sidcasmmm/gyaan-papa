@@ -1,16 +1,14 @@
 ① Papa Explains: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
 ③ Writing script
-  hook style: Start with the wrong thing people believe, then stop: 'सब सो
-  reel goal: shares
   (gemini-flash-latest via AI Studio)
   Story: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
 ④ Voiceover
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"bf70eadc9dea84c779c93327aabe4919"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"144dd98ff570c038ad8237ee2619f345"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"66f57c710e216b5df6b28e8b5d2e8ca4"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"d4ff7a0bf20dfe00f53264588709cef6"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"91e0884f9228d94f79c93327aabe44c2"}}); using free voice
-  26.6s total
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"254b2dca7a82994de30a44c3741a9fea"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"c29ac67bd2de4dd1415f5e0d8a3f4cc0"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"a7b9a916fffa81e686d45360fbd5e733"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"5f83e1cf1d6c33d72e321ef292ab63cf"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"811efd9aba0fafcb55875f2eb021adc9"}}); using free voice
+  29.4s total
 ⑤ Rendering video
   generating scene images
   (gemini-3.1-flash-lite-image via AI Studio)
@@ -19,17 +17,17 @@
   ✓ AI image 3/5
   ✓ AI image 4/5
   ✓ AI image 5/5
-  AI pictures this month: 5 (≈ ₹15 of ₹3000 limit)
-  ✓ out/20261028_2158/short_20261028_2158.mp4 (12.9 MB)
+  AI pictures this month: 10 (≈ ₹30 of ₹3000 limit)
+  ✓ out/20261028_2206/short_20261028_2206.mp4 (15.1 MB)
 ⑥ Uploads are off (uploads_enabled: false). Nothing sent to YouTube, Instagram, or Facebook.
 ⑥ Dry run — skipping uploads
-### Black Hole Kya Hai? Event Horizon Explained! #Shorts
+### Black Hole kya hota hai? #Shorts
 - Story: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana. (Gyaan Papa)
-- Length: 27s
+- Length: 29s
 - Mode: review
 
 **This video used:**
-- Gemini script: 3,075 tokens in / 3,330 out
+- Gemini script: 2,435 tokens in / 2,258 out
 - AI pictures: 5 (≈ ₹15)
 - ElevenLabs voice: 0 characters
-**This month so far (3 videos):** 5 AI pictures ≈ ₹15 · ElevenLabs 0 / 30,000 characters · Gemini script 16,695 tokens
+**This month so far (4 videos):** 10 AI pictures ≈ ₹30 · ElevenLabs 0 / 30,000 characters · Gemini script 21,388 tokens

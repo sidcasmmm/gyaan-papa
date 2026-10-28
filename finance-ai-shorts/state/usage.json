@@ -1,11 +1,11 @@
 {
  "2026-10": {
-  "gemini_input_tokens": 9211,
-  "gemini_output_tokens": 7484,
+  "gemini_input_tokens": 11646,
+  "gemini_output_tokens": 9742,
   "claude_input_tokens": 0,
   "claude_output_tokens": 0,
   "elevenlabs_characters": 0,
-  "videos": 3,
-  "ai_images": 5
+  "videos": 4,
+  "ai_images": 10
  }
 }
