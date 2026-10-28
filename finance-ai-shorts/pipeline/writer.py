@@ -21,28 +21,14 @@ HARD RULES — never break these:
 
 STYLE: {tone}
 
-AUDIENCE — who you talk to (Indian students and curious young people, about 15–28, Hindi/Hinglish):
-- They like "ye kaise hota hai?" more than a textbook definition.
-- Frustrations: school explains with jargon, videos are either baby-talk or too long, history feels like a list of dates.
-- Desired outcome: understand one real thing well enough to explain it to a friend or a younger sibling.
-- Questions they actually ask: "Black hole mein girne pe kya hota?", "Aasman neela kyun hai?", "DNA hota kya hai?", "1857 hua kyun tha?".
-- Their language: "scene samajh nahi aaya", "simple mein batao", "ye toh magic lagta hai", "exam mein yahi aata hai".
-Make the viewer feel "ye to meri confusion thi" — name ONE everyday confusion and clear it.
+The viewer is an Indian student, about 16, who wants the answer in plain Hindi. School used a definition. This video walks through the mechanism.
 
-STRUCTURE (5–7 scenes, total narration ≈ {words} Hindi words) — always HOOK → VALUE → SOLUTION → CTA:
-- HOOK (scene 1): one line that stops the scroll, in the hook style given in the user message. Max 10 words — the viewer decides in under 2 seconds whether to keep watching. The FIRST 3 WORDS must already carry the idea — a thing (black hole, DNA, Ashoka) or "आप/आपका". NEVER open with an interjection or filler ("अरे", "अरे बाप रे", "सुनो", "देखो", "बेटा", "दोस्तों", "नमस्ते"). Max 8 words. Put the surprising true fact FIRST (e.g. 'Aasman neela isliye nahi ki space neela hai'). cover_text should follow the same pattern: thing + surprise + question. No greeting, no channel intro, no "aaj hum baat karenge". Never reuse a stock opener like "बेटा, फोन रखो और सुनो". Scene 1 visual must be "text".
-- VALUE (next 2–3 scenes): the mechanism — what it is, why it happens, and the one misconception to drop. Useful information only, zero filler. Scene 2 opens a curiosity gap that is paid off truthfully later.
-- RETENTION: every scene must add a NEW fact (no repeating, no setup lines). One concrete picture the viewer can see in their head (a train, a pressure cooker, a cricket ball). Do not invent a measurement to make it concrete. Keep the whole Reel tight — viewers leave at the first boring line.
-- SOLUTION (1–2 scenes): the one-line takeaway they can repeat to a friend. Not a list of advice about their health or money.
-- Use a "stat" scene only when you have a real, widely known number from the topic. Never use "chart".
-- CTA (last scene): one short line to remember, then exactly ONE call to action that matches the REEL GOAL given in the user message (do not stack several asks):
-    comments → an easy question answerable in one word / A-or-B (e.g. "Aasman neela hai ya space? Koment mein likho");
-    saves → worth revisiting before a test or a curious evening (e.g. "Save kar lo, dost ko samjhana ho to yahi kaam aayega");
-    shares → name who should get it (e.g. "Ye us cousin ko bhejo jo space ka fan hai", "Ye chhote bhai ko bhejo jo yeh poochta rehta hai");
-    follows → a reason to follow (e.g. "Roz ek aisi baat jo textbook ek page mein chhupa deti hai — follow karo").
-  Vary the wording every time.
-- Rewatch loop: the very last sentence should flow naturally back into the first line of the hook, so the Reel feels seamless when it replays.
-- Each scene has Papa's facial "expression": "shocked" (the surprising fact, usually the hook), "excited" (the wow), "happy" (normal), "thinking" (the why), "serious" (a warning that this is simplified, or a heavy history moment).
+STRUCTURE (total narration ≈ {words} Hindi words):
+- Scene 1: the question, with the thing named in the first three words. One sentence. No greeting, no "बेटा", no "सुनो", no "अरे".
+- Middle scenes: the mechanism in order. Each sentence is the next true step. Do not repeat the question. Do not stop to say it is amazing, crazy, or "asli science".
+- Last scene: one sentence that answers the question, a line a friend could repeat. Stop. No follow, share, save, or comment request.
+- Use a "stat" scene only when that number is already written in the topic. Never use "chart".
+- Each scene has Papa's facial "expression": "thinking" for the why, "happy" for a plain step, "serious" when the point is simplified or the history is heavy. Do not mark every line "shocked" or "excited".
 
 On-screen text ("onscreen") is a SHORT headline in Hindi (Devanagari), max 6 words — it is what the viewer reads, not a copy of the narration.
 
@@ -158,7 +144,7 @@ def _call_gemini_once(system: str, user: str, model: str) -> str:
         model,
         {"systemInstruction": {"parts": [{"text": system}]},
               "contents": [{"role": "user", "parts": [{"text": user}]}],
-              "generationConfig": {"responseMimeType": "application/json", "temperature": 0.8}},
+              "generationConfig": {"responseMimeType": "application/json", "temperature": 0.4}},
         timeout=90,
     )
     if r.status_code in (429, 500, 502, 503, 504):
@@ -220,7 +206,9 @@ EXPLAINER = """
 
 THIS VIDEO IS A "PAPA EXPLAINS" EVERGREEN EXPLAINER — NOT BREAKING NEWS. Rule 1 above is replaced by:
 - Teach ONE idea from space, everyday science, school-level biology, or history, using only widely accepted facts. Say "scientists think" or "historians disagree" when the point is not settled.
-- One mechanism, one misconception corrected, one line a friend can repeat. No medical advice, no doses, no lab steps, no home experiments.
+- Explain the mechanism in order. Correct one wrong idea only if the topic names it. No medical advice, no doses, no lab steps, no home experiments.
+- BAD script: "black hole ek jab simatta hai, jaise koi express train. Yeh asli science."
+- GOOD script: "ब्लैक होल की खिंचाव इतनी ज़्यादा होती है कि प्रकाश भी बाहर नहीं निकल पाता. जिस सीमा के पार प्रकाश नहीं लौटता, उसे इवेंट होराइज़न कहते हैं."
 - Do not invent a number to sound precise. A stat scene is allowed only when the topic line already contains that number.
 - Topics starting with "LIST:" are numbered-list Reels: the hook states the list promise, then ONE scene per item — "onscreen" shows the item name big (e.g. "1. Neela aasman"), narration gives one sharp true line. Every item must stand on its own.
 - You may name a well-known mission, place, or book and describe the accepted story in your own words. Never invent a quote. Image prompts still must not show real or famous people.
@@ -260,17 +248,20 @@ def write_script(cfg: dict, stories, market_text: str, market_labels: set[str],
         system += EXPLAINER
         user = EXPLAINER_USER.format(topic=explainer_topic,
                                      recent="\n".join(f"- {t}" for t in recent_topics[-15:]) or "(none yet)")
-    import random
-    style = random.choice(HOOK_STYLES)
-    user += (f"\n\nHOOK STYLE FOR THIS VIDEO: {style} "
-             "Make the first line feel fresh and different from a typical opener; don't start with 'बेटा'.")
-    print(f"  hook style: {style[:60]}")
-    goal = random.choices(["comments", "saves", "shares", "follows"], weights=[20, 20, 45, 15])[0]
-    if explainer_topic and "comment" in explainer_topic.lower():
-        goal = "comments"                              # a hand-picked topic asked for a comment CTA
-    user += (f"\n\nREEL GOAL FOR THIS VIDEO: {goal}. The last scene's single CTA and the caption's CTA "
-             f"must both serve this goal.")
-    print(f"  reel goal: {goal}")
+    if explainer_topic:
+        user += ("\n\nOpen with the question this topic is asking. "
+                 "The last line is the answer. Do not ask anyone to follow, share, save, or comment.")
+        goal = "explain"
+    else:
+        import random
+        style = random.choice(HOOK_STYLES)
+        user += (f"\n\nHOOK STYLE FOR THIS VIDEO: {style} "
+                 "Make the first line feel fresh and different from a typical opener; don't start with 'बेटा'.")
+        print(f"  hook style: {style[:60]}")
+        goal = random.choices(["comments", "saves", "shares", "follows"], weights=[20, 20, 45, 15])[0]
+        user += (f"\n\nREEL GOAL FOR THIS VIDEO: {goal}. The last scene's single CTA and the caption's CTA "
+                 f"must both serve this goal.")
+        print(f"  reel goal: {goal}")
 
     provider = w.get("provider", "anthropic")
     last_err = None

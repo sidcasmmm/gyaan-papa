@@ -285,7 +285,7 @@ class CinematicRenderer:
     def render(self, scenes: list[TimedScene], total: float, audio: Path, out: Path,
                outro_from: float, voice_wav: Path | None = None):
         n_frames = int(math.ceil(total * self.fps))
-        groups = caption_groups(scenes, max_words=3)
+        groups = caption_groups(scenes, max_words=6)
         levels = speech_levels(voice_wav, n_frames, self.fps, scenes)
         cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
                "-s", f"{self.W}x{self.H}", "-r", str(self.fps), "-i", "-", "-i", str(audio),
