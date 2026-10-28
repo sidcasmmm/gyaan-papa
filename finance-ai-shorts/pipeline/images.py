@@ -103,7 +103,7 @@ def pixabay_image(query: str) -> Image.Image:
 
 
 # ── fallback ────────────────────────────────────────────────────────────
-def placeholder(label: str, seed: int, W: int = 1080, H: int = 1920) -> Image.Image:
+def placeholder(_label: str, seed: int, W: int = 1080, H: int = 1920) -> Image.Image:
     rnd = random.Random(seed)
     base = [(28, 38, 70), (52, 34, 24), (20, 50, 46), (48, 28, 56), (30, 30, 36)][seed % 5]
     img = Image.new("RGBA", (W, H), base + (255,))
@@ -112,10 +112,7 @@ def placeholder(label: str, seed: int, W: int = 1080, H: int = 1920) -> Image.Im
         x, y, r = rnd.randint(0, W), rnd.randint(0, H), rnd.randint(80, 260)
         d.ellipse([x - r, y - r, x + r, y + r],
                   fill=(255, 210 - rnd.randint(0, 80), 140, rnd.randint(25, 60)))
-    img = img.filter(ImageFilter.GaussianBlur(40))
-    d = ImageDraw.Draw(img)
-    d.text((W // 2, 520), f"[ AI scene: {label[:40]} ]", fill=(255, 255, 255, 120), anchor="mm")
-    return img
+    return img.filter(ImageFilter.GaussianBlur(40))
 
 
 def fit_cover(img: Image.Image, W: int, H: int) -> Image.Image:

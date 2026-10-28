@@ -93,7 +93,7 @@ class CinematicRenderer:
         w = int(f.getlength(name)) + 56
         d.rounded_rectangle([40, 52, 40 + w, 112], radius=30, fill=acc)
         d.text((40 + w // 2, 82), name, font=f, fill=hex2rgb(self.st["bg_top"]), anchor="mm")
-        d.text((44, 136), f"Source: {self.source}  •  Info only, not investment advice",
+        d.text((44, 136), f"Source: {self.source}  •  Educational only, not advice",
                font=font("Medium", 24), fill=(255, 255, 255, 200))
         return img
 
