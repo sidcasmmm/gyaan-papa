@@ -1,32 +1,35 @@
 ① Papa Explains: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
 ③ Writing script
-  hook style: Start with the surprising fact itself, said like a discovery
+  hook style: Start with a question the viewer has actually asked, contain
   reel goal: comments
-  (gemini-flash-latest via AI Studio)
+  Gemini gemini-flash-latest busy — retrying in 10s
+  Gemini gemini-flash-latest busy — retrying in 20s
+  Gemini gemini-flash-latest busy — retrying in 30s
+  (gemini-3.5-flash-lite via AI Studio)
   Story: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana.
 ④ Voiceover
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"9bbce35c3ff40ae8097744785d53ecf3"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"f0ff9fbe03789536d3f992209419d43a"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"76a977a242e6ea5749d47d72535482f9"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"5b0affd73922c2639bc70d8922f91621"}}); using free voice
-  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"3633070d723402ce1d1b34a1e917bd0c"}}); using free voice
-  27.8s total
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"adb87af21aa8ba17e29d4cc8beddf3f7"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"76fe7d268a0f3a51e0fad85bdb9f6a91"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"93c9793e9bd8348957f3055106e5316d"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"9dc1866cb07c2981382cc3005081ecf9"}}); using free voice
+  ElevenLabs failed (ElevenLabs error 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"Invalid API key","status":"invalid_api_key","request_id":"cc97e186bcea14972d3868eee757dab8"}}); using free voice
+  37.1s total
 ⑤ Rendering video
   generating scene images
   ✗ AI image 1: Gemini images unavailable: Gemini image failed: 429: {
   "error": {
     "code": 429,
     "message": "You exceeded your current quota, please check your plan and — using stock photos instead
-  ✓ out/20261028_0351/short_20261028_0351.mp4 (7.3 MB)
+  ✓ out/20261028_2149/short_20261028_2149.mp4 (9.3 MB)
 ⑥ Uploads are off (uploads_enabled: false). Nothing sent to YouTube, Instagram, or Facebook.
 ⑥ Dry run — skipping uploads
-### Black Hole Kya Hai? Light Bhi Kyun Phans Jaati Hai? #Shorts
+### Black Hole Kya Hota Hai? Event Horizon Explained #Shorts
 - Story: Black hole kya hota hai — itna strong pull ki light bhi bahar nahi nikal sakti. Event horizon ko ek line mein samjhao. Koi naya number mat banana. (Gyaan Papa)
-- Length: 28s
+- Length: 37s
 - Mode: review
 
 **This video used:**
-- Gemini script: 3,064 tokens in / 3,094 out
+- Gemini script: 3,072 tokens in / 1,060 out
 - AI pictures: 0 (≈ ₹0)
 - ElevenLabs voice: 0 characters
-**This month so far (1 videos):** 0 AI pictures ≈ ₹0 · ElevenLabs 0 / 30,000 characters · Gemini script 6,158 tokens
+**This month so far (2 videos):** 0 AI pictures ≈ ₹0 · ElevenLabs 0 / 30,000 characters · Gemini script 10,290 tokens
